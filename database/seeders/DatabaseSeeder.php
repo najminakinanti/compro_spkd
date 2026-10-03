@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             InteroperabilityStandardSeeder::class,
             NewsCategorySeeder::class,
             NewsSeeder::class,
+            CompanyProfileSeeder::class,
+            EcosystemStatsSeeder::class,
+            HomepageHeroSeeder::class,
         ]);
     }
 }
