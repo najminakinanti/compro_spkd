@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             CompanyProfileSeeder::class,
             EcosystemStatsSeeder::class,
             HomepageHeroSeeder::class,
+            DiscussionEmailTemplateSeeder::class,
         ]);
     }
 }

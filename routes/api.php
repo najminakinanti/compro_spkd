@@ -63,7 +63,15 @@ Route::get('/news/{slug}', [
     'show',
 ]);
 
-Route::post('/discussion-requests', [
-    DiscussionRequestController::class, 
-    'store',
-]);
+// Route::post('/discussion-requests', [
+//     DiscussionRequestController::class, 
+//     'store',
+// ]);
+
+Route::middleware('throttle:discussion')->post(
+    '/discussion-requests',
+    [
+        DiscussionRequestController::class,
+        'store',
+    ]
+);

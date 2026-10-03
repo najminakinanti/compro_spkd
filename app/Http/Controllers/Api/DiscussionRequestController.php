@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class DiscussionRequestController extends Controller
 {
@@ -24,6 +25,35 @@ class DiscussionRequestController extends Controller
             'institution' => ['nullable', 'string', 'max:255'],
             'message' => ['required', 'string'],
         ]);
+
+        $validated['name'] = trim($validated['name']);
+        $validated['email'] = strtolower(trim($validated['email']));
+        $validated['phone'] = isset($validated['phone'])
+            ? trim($validated['phone'])
+            : null;
+        $validated['role'] = isset($validated['role'])
+            ? trim($validated['role'])
+            : null;
+        $validated['institution'] = isset($validated['institution'])
+            ? trim($validated['institution'])
+            : null;
+        $validated['message'] = trim($validated['message']);
+        $validated['solution_key'] = isset($validated['solution_key'])
+            ? trim($validated['solution_key'])
+            : null;
+
+        $duplicate = DiscussionRequest::query()
+            ->where('email', $validated['email'])
+            ->where('message', $validated['message'])
+            ->where('solution_key', $validated['solution_key'])
+            ->where('created_at', '>=', now()->subMinutes(10))
+            ->exists();
+
+        if ($duplicate) {
+            return response()->json([
+                'message' => 'A similar discussion request has already been submitted recently.',
+            ], 409);
+        }
 
         $referenceNumber = $this->generateReferenceNumber();
 
