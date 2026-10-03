@@ -24,7 +24,7 @@ class ComplianceResource extends Resource
 
     protected static ?string $navigationLabel = 'Compliances';
 
-    // protected static string|UnitEnum|null $navigationGroup = 'Homepage';
+    protected static string|UnitEnum|null $navigationGroup = 'Website Content';
 
     protected static ?string $modelLabel = 'Compliance';
 

@@ -24,7 +24,7 @@ class InteroperabilityStandardResource extends Resource
 
     protected static ?string $navigationLabel = 'Interoperability Standards';
 
-    // protected static string|UnitEnum|null $navigationGroup = 'Homepage';
+    protected static string|UnitEnum|null $navigationGroup = 'Website Content';
 
     protected static ?string $modelLabel = 'Interoperability Standard';
 

@@ -24,7 +24,7 @@ class HomepageHeroResource extends Resource
 
     protected static ?string $navigationLabel = 'Homepage Hero';
 
-    // protected static string|UnitEnum|null $navigationGroup = 'Homepage';
+    protected static string|UnitEnum|null $navigationGroup = 'Website Content';
 
     protected static ?string $modelLabel = 'Homepage Hero';
 

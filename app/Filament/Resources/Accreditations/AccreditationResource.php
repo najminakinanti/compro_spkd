@@ -21,13 +21,13 @@ class AccreditationResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
 
-    // protected static string|UnitEnum|null $navigationGroup = 'Management';
-
     protected static ?string $navigationLabel = 'Accreditations';
 
     protected static ?string $modelLabel = 'Accreditation';
 
     protected static  ?string $pluralModelLabel = 'Accreditations';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Website Content';
 
     protected static ?string $recordTitleAttribute = 'name';
 

@@ -24,7 +24,7 @@ class EcosystemStatsResource extends Resource
 
     protected static ?string $navigationLabel = 'Ecosystem Stats';
 
-    // protected static string|UnitEnum|null $navigationGroup = 'Homepage';
+    protected static string|UnitEnum|null $navigationGroup = 'Website Content';
 
     protected static ?string $modelLabel = 'Ecosystem Stats';
 
