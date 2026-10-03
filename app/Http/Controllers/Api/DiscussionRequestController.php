@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Mail\DiscussionRequestMail;
 use App\Models\DiscussionEmailTemplate;
 use App\Models\DiscussionRequest;
