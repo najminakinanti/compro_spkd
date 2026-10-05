@@ -38,10 +38,19 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->uuid('created_by')->nullable();
-            $table->uuid('updated_by')->nullable();
-        });
-    }
+            $table->foreignUuid('created_by')
+                ->nullable()
+                ->constrained('users', 'unique_id')
+                ->nullOnDelete()
+                ->cascadeOnUpdate();
+
+            $table->foreignUuid('updated_by')
+                ->nullable()
+                ->constrained('users', 'unique_id')
+                ->nullOnDelete()
+                ->cascadeOnUpdate();
+                    });
+                }
 
     /**
      * Reverse the migrations.
