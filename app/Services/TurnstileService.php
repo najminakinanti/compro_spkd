@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class TurnstileService
 {
-    public function verify(string $token, ?string $ip = null): bool
+    public function verify(string $token, ?string $ip = null): array
     {
         $response = Http::asForm()->post(
             config('services.turnstile.verify_url'),
@@ -17,10 +17,6 @@ class TurnstileService
             ]
         );
 
-        if (!$response->successful()) {
-            return false;
-        }
-
-        return $response->json('success', false);
+        return $response->json();
     }
 }

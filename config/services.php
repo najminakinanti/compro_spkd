@@ -35,7 +35,7 @@ return [
         ],
     ],
     'turnstile' => [
-        'secret_key' => env('0x4AAAAAAFO4so7jBtwzCGeOoo4--nmGlsY'),
+        'secret_key' => env('TURNSTILE_SECRET_KEY'),
         'verify_url' => env(
             'TURNSTILE_VERIFY_URL',
             'https://challenges.cloudflare.com/turnstile/v0/siteverify'

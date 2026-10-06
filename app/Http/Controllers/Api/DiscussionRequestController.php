@@ -28,14 +28,15 @@ class DiscussionRequestController extends Controller
             'turnstile_token' => ['required', 'string'],
         ]);
 
-        $turnstileValid = $turnstileService->verify(
+        $turnstileResult = $turnstileService->verify(
             $validated['turnstile_token'],
             $request->ip()
         );
 
-        if (!$turnstileValid) {
+        if (!($turnstileResult['success'] ?? false)) {
             return response()->json([
                 'message' => 'CAPTCHA verification failed.',
+                'errors' => $turnstileResult['error-codes'] ?? [],
             ], 422);
         }
 
