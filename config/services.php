@@ -34,5 +34,12 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'turnstile' => [
+        'secret_key' => env('0x4AAAAAAFO4so7jBtwzCGeOoo4--nmGlsY'),
+        'verify_url' => env(
+            'TURNSTILE_VERIFY_URL',
+            'https://challenges.cloudflare.com/turnstile/v0/siteverify'
+        ),
+    ],
 
 ];

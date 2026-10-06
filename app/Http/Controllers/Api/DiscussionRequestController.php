@@ -11,10 +11,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use App\Services\TurnstileService;
 
 class DiscussionRequestController extends Controller
 {
-    public function store(Request $request): JsonResponse
+    public function store(Request $request, TurnstileService $turnstileService): JsonResponse
     {
         $validated = $request->validate([
             'solution_key' => ['nullable', 'string', 'max:255'],
@@ -24,7 +25,21 @@ class DiscussionRequestController extends Controller
             'role' => ['nullable', 'string', 'max:255'],
             'institution' => ['nullable', 'string', 'max:255'],
             'message' => ['required', 'string'],
+            'turnstile_token' => ['required', 'string'],
         ]);
+
+        $turnstileValid = $turnstileService->verify(
+            $validated['turnstile_token'],
+            $request->ip()
+        );
+
+        if (!$turnstileValid) {
+            return response()->json([
+                'message' => 'CAPTCHA verification failed.',
+            ], 422);
+        }
+
+        unset($validated['turnstile_token']);
 
         $validated['name'] = trim($validated['name']);
         $validated['email'] = strtolower(trim($validated['email']));
